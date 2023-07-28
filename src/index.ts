@@ -1,17 +1,12 @@
 import express, { Request, Response } from 'express';
-import { userCreate, verifyPayment } from './controllers/signup.js';
+import { downloadPlan } from './controllers/farolPlan.js';
 import 'dotenv/config'
 import cors from 'cors';
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8088;
 const server = express();
 
-// const options: cors.CorsOptions = {
-//   origin: ['*']
-// };
-
-// server.use(cors(options));
-server.use((req, res, next) => {
+server.use((_, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
 
@@ -24,17 +19,10 @@ server.use(express.json());
 
 server.get('/', (req, res) => res.send('Server running successful'));
 
-server.get('/user/:user_id/verify_payment/:payment_id', async (req: Request, res: Response) => {
-  const { user_id, payment_id } = req.params;
-  const response = await verifyPayment(payment_id, user_id);
+server.get('/farol-plan', async (req: Request, res: Response) => {
+  const response = await downloadPlan();
 
-  res.status(response.status).json(response.data);
-});
-
-server.post('/user', async (req: Request, res: Response) => {
-  const response: any = await userCreate(req.body);
-
-  res.status(response.status).json(response.data);
+  res.status(response.status).json(response.data.history);
 });
 
 server.listen(PORT, () => console.log(`Server running in: ${PORT}`));
