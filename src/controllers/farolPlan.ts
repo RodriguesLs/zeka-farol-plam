@@ -4,6 +4,8 @@ export const downloadPlan = async () => {
   try {
     const response: any = await tamboroApi.get('/');
 
+    console.log('Download concluded successfull');
+
     return response;
   } catch (err: any) {
     console.log({ err });

@@ -22,7 +22,7 @@ server.get('/', (req, res) => res.send('Server running successful'));
 server.get('/farol-plan', async (req: Request, res: Response) => {
   const response = await downloadPlan();
 
-  res.status(response.status).json(response.data.history);
+  res.status(response?.status).json(response?.data?.history);
 });
 
 server.listen(PORT, () => console.log(`Server running in: ${PORT}`));
