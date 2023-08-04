@@ -5,6 +5,6 @@ const routes = Router();
 
 routes.get('/', (_, res) => res.send('Server running successful'));
 
-routes.use('/farol-plan', farolPlanRoutes);
+routes.use('/plan', farolPlanRoutes);
 
 export default routes;

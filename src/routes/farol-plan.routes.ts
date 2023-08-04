@@ -3,7 +3,7 @@ import { downloadFarolPlan, downloadLatestActivitiesPlan } from '../controllers/
 
 const farolPlanRouter = Router();
 
-farolPlanRouter.get('/', async (req: Request, res: Response) => {
+farolPlanRouter.get('/farol', async (req: Request, res: Response) => {
   const response = await downloadFarolPlan();
 
   res.status(response?.status).json(response?.data?.history);
