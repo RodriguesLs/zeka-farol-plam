@@ -12,7 +12,7 @@ farolPlanRouter.get('/farol/register', async (req: Request, res: Response) => {
 farolPlanRouter.get('/farol', async (req: Request, res: Response) => {
   const response = await downloadFarolPlan();
 
-  res.status(response?.status).json({ ...response?.data?.history, errors: response?.err });
+  res.status(response?.status).json(response?.data?.history);
 });
 
 farolPlanRouter.get('/latest-activities', async (req: Request, res: Response) => {
