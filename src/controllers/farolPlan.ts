@@ -33,7 +33,7 @@ export const updateCoursesHistories = async () => {
       const courses = oldCourses.map((c: any) => {
         const {
           course_id, finish_date, initial_date, itinerary_points, proficiency_fifth_scale,
-          status, registration_date, proficiency_percent_scale
+          status, registration_date, proficiency_percent_scale, progress
         } = c;
 
         // channel (id, name, courses) has_many: courses
@@ -70,6 +70,7 @@ export const updateCoursesHistories = async () => {
           status: ZEKA_STATUS[status],
           registration_date,
           proficiency_percent_scale,
+          progress,
           details
         }
       });
